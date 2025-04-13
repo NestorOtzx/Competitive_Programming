@@ -1,0 +1,9 @@
+# Ignorar archivos ejecutables
+*.exe
+
+# Ignorar archivos de entrada y salida
+*.in
+*.out
+
+# Ignorar configuración local de VSCode
+.vscode/
