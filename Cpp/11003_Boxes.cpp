@@ -42,7 +42,7 @@ int solve(int N, int ML)
     }*/
 
 
-    return dp[0][6002];
+    return dp[0][6001];
 }
 
 int main()
