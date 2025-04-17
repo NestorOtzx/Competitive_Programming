@@ -15,26 +15,31 @@ def dist(inda,indb):
 
 memo = dict()
 
-def phi(m1,m2,rt1,rt2):
+def phi(m1,m2,rt):
     global memo
-    if (m1,m2,rt1,rt2) in memo:
-        ans = memo[(m1,m2,rt1,rt2)]
+    if (m1,m2,rt) in memo:
+        ans = memo[(m1,m2,rt)]
     else:
         if m1 == F and m2 == F:
             ans = 1
         else:
             if (m1 == F):
-                cost = max(dist(m2, F)-rt2, 0)
-                ans = cost + phi(m1,F,0,0)
+                cost = max(dist(m2, F)-rt, 0)
+                ans = cost + phi(m1,F,0)
             elif (m2 == F):
-                cost = max(dist(m1, F)-rt1, 0)
-                ans = cost + phi(F,m2,0,0)
+                cost = max(dist(m1, F)-rt, 0)
+                ans = cost + phi(F,m2,0)
             else:
                 n = max(m1,m2)
+                rt1, rt2 = 0, 0
+                if m1 < m2:
+                    rt1 = rt
+                else:
+                    rt2 = rt
                 dm1=max(dist(m1, n+1)-rt1,0)
                 dm2=max(dist(m2, n+1)-rt2,0)
-                ans = min(dm1 + phi(n+1,m2,0,dm1+rt2), dm2+phi(m1,n+1,dm2+rt1,0))
-        memo[(m1,m2,rt1,rt2)] = ans
+                ans = min(dm1 + phi(n+1,m2,dm1+rt2), dm2+phi(m1,n+1,dm2+rt1))
+        memo[(m1,m2,rt)] = ans
     return ans
 
 def main():
@@ -50,7 +55,7 @@ def main():
             B[n] = (a,b)
         F = N+1
         B[F] = (R,C)
-        print(phi(0,0,0,0))
+        print(phi(0,0,0))
         data = stdin.readline().strip()    
     
 main()
