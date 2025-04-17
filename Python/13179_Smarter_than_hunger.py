@@ -19,6 +19,8 @@ def phi(m1,m2,rt):
     global memo
     if (m1,m2,rt) in memo:
         ans = memo[(m1,m2,rt)]
+    elif (m2,m1,rt) in memo:
+        ans = memo[(m2,m1,rt)]
     else:
         if m1 == F and m2 == F:
             ans = 1
