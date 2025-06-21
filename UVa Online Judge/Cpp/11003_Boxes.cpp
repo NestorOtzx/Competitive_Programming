@@ -7,10 +7,7 @@ using namespace std;
 int P[1000];
 int L[1000];
 
-
-
 int dp[1001][6002];
-
 
 int solve(int N, int ML)
 {
